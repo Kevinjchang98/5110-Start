@@ -35,6 +35,55 @@ namespace UnitTests.Pages.Product.AddRating
         // ....
 
         [Test]
+        public void AddRating_InValid_Data_Should_Return_False()
+        {
+            // Arrange
+
+            // Act
+            var result = TestHelper.ProductService.AddRating("-1", 5);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [Test]
+        public void AddRating_InValid_Rating_Low_Should_Return_False()
+        {
+            // Arrange
+
+            // Act
+            var result = TestHelper.ProductService.AddRating("jenlooper-light", -1);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [Test]
+        public void AddRating_InValid_Rating_High_Should_Return_False()
+        {
+            // Arrange
+
+            // Act
+            var result = TestHelper.ProductService.AddRating("jenlooper-light", 6);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [Test]
+        public void AddRating_Valid_Null_Rating_Should_Return_True()
+        {
+            // Arrange
+
+            // Act
+            var result = TestHelper.ProductService.AddRating("sailorhg-bubblesortpic", 3);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+
+        [Test]
         public void AddRating_InValid_Product_Null_Should_Return_False()
         {
             // Arrange
